@@ -1,0 +1,66 @@
+### Obter todas as bebidas
+GET http://localhost:5271/api/cardapio
+Accept: application/json
+
+### Obter apenas bebidas alcoólicas
+GET http://localhost:5271/api/cardapio/alcoolicas
+Accept: application/json
+
+### Obter apenas bebidas não alcoólicas
+GET http://localhost:5271/api/cardapio/nao-alcoolicas
+Accept: application/json
+
+### Adicionar uma bebida
+POST http://localhost:5271/api/cardapio
+Content-Type: application/json
+
+{
+    "nome": "Piña Colada",
+    "preco": 22.00,
+    "alcoolica": true
+}
+
+### Obter todos os clientes
+GET http://localhost:5271/api/cliente
+Accept: application/json
+
+### Cadastrar um cliente
+POST http://localhost:5271/api/cliente
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "dataNascimento": "2009-12-18"
+}
+
+### Obter todas as mesas
+GET http://localhost:5271/api/mesas
+Accept: application/json
+
+### Cadastrar uma mesa
+POST http://localhost:5271/api/mesas
+Content-Type: application/json
+
+{
+  "numero": 10,
+  "capacidade": 6,
+  "ocupada": false
+}
+
+### Liberar uma mesa 
+PUT http://localhost:5271/api/mesas/2/liberar
+Accept: application/json
+
+### Apagar uma mesa
+DELETE http://localhost:5271/api/mesas/3
+Accept: application/json
+
+### Realizar um novo pedido
+POST http://localhost:5271/api/pedido
+Content-Type: application/json
+
+{
+  "ClienteId": 3,
+  "BebidaId": 9,
+  "DataPedido": "2025-05-27T12:00:00"
+}
