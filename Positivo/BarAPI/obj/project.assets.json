@@ -3693,11 +3693,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MAYCONMARSCHALLZANYC\\Downloads\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
+      "projectUniqueName": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
       "projectName": "BarAPI",
-      "projectPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\Downloads\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
+      "projectPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
       "packagesPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\Downloads\\BarTopicosdeSistemas\\Positivo\\BarAPI\\obj\\",
+      "outputPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MAYCONMARSCHALLZANYC\\AppData\\Roaming\\NuGet\\NuGet.Config"
