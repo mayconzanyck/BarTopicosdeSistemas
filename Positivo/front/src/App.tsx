@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BebidaList from './components/BebidaList';
 import BebidaManager from './components/BebidaManager';
+import ClienteManager from './components/Cliente'; // Novo import
 
 function App() {
   const [filtro, setFiltro] = useState<'todas' | 'alcoolicas' | 'nao-alcoolicas'>('todas');
@@ -32,6 +33,10 @@ function App() {
 
       <h2 style={{ marginBottom: '20px' }}>Área Administrativa</h2>
       <BebidaManager />
+
+      {/* Cadastro de cliente */}
+      <h2 style={{ marginTop: '40px', marginBottom: '20px' }}>Cadastro de Cliente</h2>
+      <ClienteManager />
     </div>
   );
 }
