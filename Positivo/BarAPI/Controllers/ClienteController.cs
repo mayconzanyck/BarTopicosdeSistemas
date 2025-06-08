@@ -37,4 +37,50 @@ public class ClienteController : ControllerBase
         await _context.SaveChangesAsync(); // Salva as mudanças no banco.
         return Ok(new { message = "Cliente cadastrado com sucesso!", cliente });
     }
+    
+    // Atualizar Cliente
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] Cliente clienteAtualizado)
+    {
+        if (id != clienteAtualizado.Id)
+        {
+            return BadRequest(new { message = "ID da URL não confere com o ID do cliente." });
+        }
+
+        var clienteExistente = await _context.Clientes.FindAsync(id);
+
+        if (clienteExistente == null)
+        {
+            return NotFound(new { message = "Cliente não encontrado." });
+        }
+
+        // Atualiza os campos do cliente existente
+        clienteExistente.Nome = clienteAtualizado.Nome;
+        clienteExistente.DataNascimento = clienteAtualizado.DataNascimento;
+
+        // Salva as alterações
+        await _context.SaveChangesAsync();
+
+        return Ok(new { message = "Cliente atualizado com sucesso!", cliente = clienteExistente });
+    }
+
+
+    
+        // Excluir Cliente
+    [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cliente = await _context.Clientes.FindAsync(id); // Procura o cliente pelo ID
+
+            if (cliente == null)
+            {
+                return NotFound(new { message = "Cliente não encontrado." }); // Retorna erro se não achar
+            }
+
+            _context.Clientes.Remove(cliente); // Remove do banco
+            await _context.SaveChangesAsync(); // Salva as mudanças
+
+            return Ok(new { message = "Cliente removido com sucesso!", cliente });
+        }
+
 }
