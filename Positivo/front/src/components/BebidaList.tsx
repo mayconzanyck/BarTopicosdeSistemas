@@ -18,7 +18,7 @@ const BebidaList: React.FC<Props> = ({ filtro }) => {
   useEffect(() => {
     const buscar = async () => {
       setCarregando(true);
-      let url = 'https://localhost:5001/api/cardapio';
+      let url = 'http://localhost:5271/api/cardapio';
 
       if (filtro === 'alcoolicas') url += '/alcoolicas';
       if (filtro === 'nao-alcoolicas') url += '/nao-alcoolicas';

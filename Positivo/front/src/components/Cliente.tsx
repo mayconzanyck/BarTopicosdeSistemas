@@ -1,73 +1,68 @@
 import React, { useState } from 'react';
 
-type Cliente = {
-  nome: string;
-  email: string;
-  idade: number;
-};
-
 const ClienteManager: React.FC = () => {
-  const [cliente, setCliente] = useState<Cliente>({ nome: '', email: '', idade: 0 });
+  const [nome, setNome] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
   const [mensagem, setMensagem] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!nome || !dataNascimento) {
+      setMensagem('Preencha todos os campos.');
+      return;
+    }
+
     try {
-      const resp = await fetch('https://localhost:5001/api/cliente', {
+      const resposta = await fetch('http://localhost:5271/api/cliente', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cliente),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome,
+          dataNascimento
+        }),
       });
 
-      if (resp.ok) {
-        setMensagem('Cliente cadastrado com sucesso!');
-        setCliente({ nome: '', email: '', idade: 0 });
+      const json = await resposta.json();
+
+      if (resposta.ok) {
+        setMensagem(json.message || 'Cliente cadastrado com sucesso!');
+        setNome('');
+        setDataNascimento('');
       } else {
-        setMensagem('Erro ao cadastrar cliente.');
+        setMensagem(json.message || 'Erro ao cadastrar cliente.');
       }
-    } catch (e) {
-      console.error(e);
-      setMensagem('Erro na conexão com a API.');
+    } catch (erro) {
+      console.error('Erro na requisição:', erro);
+      setMensagem('Erro ao conectar com o servidor.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', marginTop: '30px' }}>
-      <h2>Cadastro de Cliente</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            placeholder="Nome"
-            value={cliente.nome}
-            onChange={(e) => setCliente({ ...cliente, nome: e.target.value })}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            placeholder="Email"
-            value={cliente.email}
-            onChange={(e) => setCliente({ ...cliente, email: e.target.value })}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            placeholder="Idade"
-            value={cliente.idade}
-            onChange={(e) => setCliente({ ...cliente, idade: parseInt(e.target.value) })}
-            required
-          />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-
-      {mensagem && <p>{mensagem}</p>}
-    </div>
+    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+      <div>
+        <input
+          type="text"
+          placeholder="Nome do Cliente"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          style={{ padding: '8px', marginBottom: '10px', width: '200px' }}
+        />
+      </div>
+      <div>
+        <input
+          type="date"
+          placeholder="Data de Nascimento"
+          value={dataNascimento}
+          onChange={(e) => setDataNascimento(e.target.value)}
+          style={{ padding: '8px', marginBottom: '10px', width: '200px' }}
+        />
+      </div>
+      <button type="submit">Cadastrar Cliente</button>
+      {mensagem && <p style={{ marginTop: '10px' }}>{mensagem}</p>}
+    </form>
   );
 };
 

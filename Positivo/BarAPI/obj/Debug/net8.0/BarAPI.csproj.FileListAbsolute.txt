@@ -958,3 +958,4 @@ C:\Users\pedro\BarTopicosdeSistemas\Positivo\BarAPI\obj\Debug\net8.0\refint\BarA
 C:\Users\pedro\BarTopicosdeSistemas\Positivo\BarAPI\obj\Debug\net8.0\BarAPI.pdb
 C:\Users\pedro\BarTopicosdeSistemas\Positivo\BarAPI\obj\Debug\net8.0\BarAPI.genruntimeconfig.cache
 C:\Users\pedro\BarTopicosdeSistemas\Positivo\BarAPI\obj\Debug\net8.0\ref\BarAPI.dll
+C:\Users\pedro\BarTopicosdeSistemas\Positivo\BarAPI\bin\Debug\net8.0\package.json
