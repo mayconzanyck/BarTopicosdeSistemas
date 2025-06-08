@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BebidaList from './components/BebidaList';
+import BebidaManager from './components/BebidaManager';
 
 function App() {
   const [filtro, setFiltro] = useState<'todas' | 'alcoolicas' | 'nao-alcoolicas'>('todas');
@@ -9,7 +10,7 @@ function App() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',  // centraliza horizontalmente
+        alignItems: 'center',
         padding: '20px',
         fontFamily: 'Arial, sans-serif',
         textAlign: 'center',
@@ -25,11 +26,14 @@ function App() {
       </div>
 
       <BebidaList filtro={filtro} />
+
+      {/* Área administrativa */}
+      <hr style={{ margin: '40px 0', width: '100%' }} />
+
+      <h2 style={{ marginBottom: '20px' }}>Área Administrativa</h2>
+      <BebidaManager />
     </div>
   );
 }
 
 export default App;
-
-
-

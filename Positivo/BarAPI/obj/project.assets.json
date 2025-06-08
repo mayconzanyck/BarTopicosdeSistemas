@@ -3688,19 +3688,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MAYCONMARSCHALLZANYC\\.nuget\\packages\\": {}
+    "C:\\Users\\pedro\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
+      "projectUniqueName": "C:\\Users\\pedro\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
       "projectName": "BarAPI",
-      "projectPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
-      "packagesPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MAYCONMARSCHALLZANYC\\BarTopicosdeSistemas\\Positivo\\BarAPI\\obj\\",
+      "projectPath": "C:\\Users\\pedro\\BarTopicosdeSistemas\\Positivo\\BarAPI\\BarAPI.csproj",
+      "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pedro\\BarTopicosdeSistemas\\Positivo\\BarAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\MAYCONMARSCHALLZANYC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -3767,7 +3767,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
