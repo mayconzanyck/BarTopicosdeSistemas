@@ -32,7 +32,7 @@ const BebidaManager: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = 'https://localhost:5001/api/cardapio';
+    const url = 'http://localhost:5271/api/cardapio';
     const metodo = modoEdicao ? 'PUT' : 'POST';
     const finalUrl = modoEdicao ? `${url}/${form.id}` : url;
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 type Cliente = {
   id: number;
   nome: string;
-  telefone: string;
+  idade: number;
 };
 
 const ClienteList: React.FC = () => {
@@ -37,7 +37,7 @@ const ClienteList: React.FC = () => {
         clientes.map((cliente) => (
           <div key={cliente.id} style={{ marginBottom: '10px', background: '#f0f0f0', padding: '10px', borderRadius: '8px' }}>
             <p><strong>Nome:</strong> {cliente.nome}</p>
-            <p><strong>Telefone:</strong> {cliente.telefone}</p>
+            <p><strong>Idade:</strong> {cliente.idade}</p>
           </div>
         ))
       )}
