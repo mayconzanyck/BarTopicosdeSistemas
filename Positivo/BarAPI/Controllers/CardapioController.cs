@@ -69,4 +69,21 @@ public class CardapioController : ControllerBase
         await _context.SaveChangesAsync(); // Salva as mudanças no banco.
         return Ok(new { message = "Bebida adicionada ao cardápio!", bebida });
     }
+    
+    // Excluir Bebida
+    [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var bebida = await _context.Cardapio.FindAsync(id); // Procura a bebida pelo ID.
+
+            if (bebida == null)
+            {
+                return NotFound(new { message = "Bebida não encontrada." }); // Retorna erro se não achar.
+            }
+
+            _context.Cardapio.Remove(bebida); // Remove do banco.
+            await _context.SaveChangesAsync(); // Salva as mudanças.
+
+            return Ok(new { message = "Bebida removida com sucesso!", bebida });
+        }
 }

@@ -20,8 +20,12 @@ Content-Type: application/json
     "alcoolica": true
 }
 
+### Apagar uma bebida
+DELETE http://localhost:5271/api/cardapio/{id}
+Accept: application/json
+
 ### Obter todos os clientes
-GET http://localhost:5271/api/cliente
+  GET http://localhost:5271/api/cliente
 Accept: application/json
 
 ### Cadastrar um cliente
