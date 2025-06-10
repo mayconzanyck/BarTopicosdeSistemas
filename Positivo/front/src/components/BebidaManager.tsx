@@ -126,48 +126,78 @@ const BebidaManager: React.FC = () => {
         </p>
       )}
 
-      {/* Formulário para cadastrar ou editar bebida */}
-      <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={form.nome}
-          onChange={(e) => setForm({ ...form, nome: e.target.value })}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Preço"
-          value={form.preco}
-          onChange={(e) =>
-            setForm({ ...form, preco: parseFloat(e.target.value) })
-          }
-          required
-        />
-        <label>
-          <input
-            type="checkbox"
-            checked={form.alcoolica}
-            onChange={(e) =>
-              setForm({ ...form, alcoolica: e.target.checked })
-            }
-          />
-          Alcoólica
-        </label>
+  {/* Formulário para cadastrar ou editar bebida */}
+  <form
+  onSubmit={handleSubmit}
 
-        {/* Botões de enviar ou cancelar edição */}
-        <button type="submit">{modoEdicao ? 'Atualizar' : 'Cadastrar'}</button>
-        {modoEdicao && (
-          <button
-            onClick={() => {
-              setForm({ nome: '', preco: 0, alcoolica: false });
-              setModoEdicao(false);
-            }}
-          >
-            Cancelar
-          </button>
-        )}
-      </form>
+  // Espaçamento abaixo do formulário e layout em coluna com espaçamento entre elementos
+  style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '300px' }}
+  >
+  {/* Input para o nome da bebida */}
+  <input
+    type="text"
+    placeholder="Nome"
+    value={form.nome}
+    onChange={(e) => setForm({ ...form, nome: e.target.value })}
+    required
+    style={{ padding: '8px', fontSize: '16px' }}
+  />
+
+  {/* Input para o preço da bebida */}
+  <input
+    type="number"
+    placeholder="Preço"
+    value={form.preco}
+    onChange={(e) =>
+      setForm({ ...form, preco: parseFloat(e.target.value) })
+    }
+    required
+    style={{ padding: '8px', fontSize: '16px' }}
+  />
+
+  {/* Checkbox para indicar se a bebida é alcoólica */}
+  <label
+    // Layout flex para alinhar checkbox e texto na mesma linha, com espaçamento entre eles
+    style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '16px' }}
+  >
+    <input
+      type="checkbox"
+      checked={form.alcoolica}
+      onChange={(e) =>
+        setForm({ ...form, alcoolica: e.target.checked })
+      }
+          style={{ width: '15px', height: '15px' }} // tamanho menor do checkbox
+    />
+    Alcoólica
+  </label>
+
+  {/* Container para os botões */}
+  <div
+    // Layout flex para alinhar botões na horizontal com espaçamento entre eles
+    style={{ marginTop: '12px', display: 'flex', gap: '10px' }}
+  >
+    {/* Botão de submit que muda o texto conforme modo de edição */}
+    <button type="submit" className="filtro-btn">
+      {modoEdicao ? 'Atualizar' : 'Cadastrar'}
+    </button>
+
+    {/* Botão de cancelar que aparece somente no modo de edição */}
+    {modoEdicao && (
+      <button
+        type="button" // evita que o botão submeta o formulário
+        className="filtro-btn"
+        onClick={() => {
+          // Limpa o formulário e sai do modo edição
+          setForm({ nome: '', preco: 0, alcoolica: false });
+          setModoEdicao(false);
+        }}
+      >
+        Cancelar
+      </button>
+    )}
+  </div>
+</form>
+
 
       {/* Lista de bebidas com botão de editar e remover */}
       {carregando ? (
@@ -187,11 +217,13 @@ const BebidaManager: React.FC = () => {
             <p>Preço: R$ {b.preco.toFixed(2)}</p>
             <p>{b.alcoolica ? 'Alcoólica' : 'Não Alcoólica'}</p>
             <button
+              className="filtro-btn"
+              style={{ marginLeft: '10px', color: 'white' }}
               onClick={() => handleDelete(b.id)}
-              style={{ marginLeft: '10px', color: 'red' }}
             >
               Remover
-            </button>
+            </button> 
+
           </div>
         ))
       )}

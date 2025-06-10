@@ -7,27 +7,33 @@ type Bebida = {
   alcoolica: boolean;
 };
 
+// Tipo para as props do componente
 type Props = {
   filtro: 'todas' | 'alcoolicas' | 'nao-alcoolicas';
 };
 
+// Componente funcional que recebe uma prop de filtro
 const BebidaList: React.FC<Props> = ({ filtro }) => {
-  const [bebidas, setBebidas] = useState<Bebida[]>([]);
-  const [carregando, setCarregando] = useState(true);
+  const [bebidas, setBebidas] = useState<Bebida[]>([]);  // Estado para armazenar a lista de bebidas
+
+  const [carregando, setCarregando] = useState(true);  // Estado para indicar se os dados estão sendo carregados
 
   useEffect(() => {
     const buscar = async () => {
       setCarregando(true);
       let url = 'http://localhost:5271/api/cardapio';
 
+      // Modifica a URL conforme o filtro selecionado
       if (filtro === 'alcoolicas') url += '/alcoolicas';
       if (filtro === 'nao-alcoolicas') url += '/nao-alcoolicas';
 
       try {
+        // Faz requisição à API
         const resposta = await fetch(url);
         const dados = await resposta.json();
         setBebidas(dados);
       } catch (erro) {
+        // Trata erros na requisição
         console.error('Erro ao buscar bebidas:', erro);
       } finally {
         setCarregando(false);
@@ -35,7 +41,7 @@ const BebidaList: React.FC<Props> = ({ filtro }) => {
     };
 
     buscar();
-  }, [filtro]);
+  }, [filtro]); // O efeito é executado sempre que o filtro mudar
 
   if (carregando) return <p>Carregando bebidas...</p>;
 

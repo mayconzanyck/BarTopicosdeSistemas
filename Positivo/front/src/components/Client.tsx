@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// Componente funcional React
 const ClienteManager: React.FC = () => {
   const [nome, setNome] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
@@ -9,6 +10,7 @@ const ClienteManager: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Verifica se os campos estão preenchidos
     if (!nome || !dataNascimento) {
       setMensagem('Preencha todos os campos.');
       setTipoMensagem('erro');
@@ -16,6 +18,7 @@ const ClienteManager: React.FC = () => {
     }
 
     try {
+      // Faz requisição POST para a API para cadastrar o cliente
       const resposta = await fetch('http://localhost:5271/api/cliente', {
         method: 'POST',
         headers: {
@@ -27,6 +30,7 @@ const ClienteManager: React.FC = () => {
         }),
       });
 
+      // Converte a resposta da API em JSON
       const json = await resposta.json();
 
       if (resposta.ok) {
@@ -35,6 +39,7 @@ const ClienteManager: React.FC = () => {
         setNome('');
         setDataNascimento('');
       } else {
+        // Se a API retornou erro, mostra mensagem apropriada
         setMensagem(json.message || 'Erro ao cadastrar cliente.');
         setTipoMensagem('erro');
       }
@@ -46,6 +51,7 @@ const ClienteManager: React.FC = () => {
   };
 
   return (
+     // Formulário com evento de submit tratado pela função handleSubmit
     <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
       <div>
         <input
@@ -65,7 +71,8 @@ const ClienteManager: React.FC = () => {
           style={{ padding: '8px', marginBottom: '10px', width: '200px' }}
         />
       </div>
-      <button type="submit">Cadastrar Cliente</button>
+      
+      <button type="submit" className="filtro-btn">Cadastrar Cliente</button>
 
       {mensagem && (
         <p

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+// Define o tipo Cliente, com os campos esperados vindos do backend
 type Cliente = {
   id: number;
   nome: string;
   dataNascimento: string;
 };
 
+// Função para calcular a idade a partir da data de nascimento
 const calcularIdade = (dataNascimento: string): number => {
   const nascimento = new Date(dataNascimento);
   const hoje = new Date();
@@ -26,6 +28,7 @@ const ClienteList: React.FC = () => {
   const [novoNome, setNovoNome] = useState('');
   const [novaDataNascimento, setNovaDataNascimento] = useState('');
 
+  // Função que busca os clientes da API
   const buscarClientes = async () => {
     try {
       const resposta = await fetch('http://localhost:5271/api/cliente');
@@ -38,6 +41,7 @@ const ClienteList: React.FC = () => {
     }
   };
 
+  // Executa a busca de clientes assim que o componente é montado
   useEffect(() => {
     buscarClientes();
   }, []);
@@ -48,6 +52,7 @@ const ClienteList: React.FC = () => {
     setNovaDataNascimento(cliente.dataNascimento.split('T')[0]);
   };
 
+  // Salva as alterações do cliente editado
     const handleSalvar = async (id: number) => {
     try {
         const resposta = await fetch(`http://localhost:5271/api/cliente/${id}`, {
@@ -66,8 +71,8 @@ const ClienteList: React.FC = () => {
         console.log('Resposta do PUT:', resposta.status, json);
 
         if (resposta.ok) {
-        await buscarClientes();
-        setEditandoId(null);
+        await buscarClientes(); // Recarrega a lista com os dados atualizados
+        setEditandoId(null); // Fecha o modo de edição
         } else {
         alert(json.message || 'Erro ao atualizar cliente.');
         }
@@ -77,7 +82,7 @@ const ClienteList: React.FC = () => {
     }
     };
 
-
+// Remove um cliente após confirmação
   const handleRemover = async (id: number) => {
     if (!window.confirm('Deseja realmente remover este cliente?')) return;
 
@@ -96,6 +101,7 @@ const ClienteList: React.FC = () => {
     }
   };
 
+  // Enquanto carrega os dados, mostra uma mensagem
   if (carregando) return <p>Carregando clientes...</p>;
 
   return (
@@ -121,15 +127,17 @@ const ClienteList: React.FC = () => {
                   style={{ marginLeft: '10px' }}
                 />
                 <br />
-                <button onClick={() => handleSalvar(cliente.id)}>Salvar</button>
-                <button onClick={() => setEditandoId(null)} style={{ marginLeft: '10px' }}>Cancelar</button>
+                  <button className="filtro-btn" onClick={() => handleSalvar(cliente.id)}>Salvar</button>
+                  <button className="filtro-btn" onClick={() => setEditandoId(null)} style={{ marginLeft: '10px' }}>Cancelar</button>
+
               </div>
             ) : (
               <>
                 <p><strong>Nome:</strong> {cliente.nome}</p>
                 <p><strong>Idade:</strong> {calcularIdade(cliente.dataNascimento)} anos</p>
-                <button onClick={() => handleEditar(cliente)}>Editar</button>
-                <button onClick={() => handleRemover(cliente.id)} style={{ marginLeft: '10px' }}>Remover</button>
+              <button className="filtro-btn" onClick={() => handleEditar(cliente)}>Editar</button>
+              <button className="filtro-btn" onClick={() => handleRemover(cliente.id)} style={{ marginLeft: '10px' }}>Remover</button>
+
               </>
             )}
           </div>
